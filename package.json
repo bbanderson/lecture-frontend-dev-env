@@ -27,5 +27,12 @@
   "bugs": {
     "url": "https://github.com/jeonghwan-kim/lecture-frontend-dev-env/issues"
   },
-  "homepage": "https://github.com/jeonghwan-kim/lecture-frontend-dev-env#readme"
+  "homepage": "https://github.com/jeonghwan-kim/lecture-frontend-dev-env#readme",
+  "dependencies": {
+    "@babel/cli": "^7.15.7",
+    "@babel/core": "^7.15.5",
+    "@babel/preset-env": "^7.15.6",
+    "babel-loader": "^8.2.2",
+    "core-js": "2"
+  }
 }
