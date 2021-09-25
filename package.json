@@ -33,5 +33,8 @@
     "url": "https://github.com/jeonghwan-kim/lecture-frontend-dev-env/issues"
   },
   "homepage": "https://github.com/jeonghwan-kim/lecture-frontend-dev-env#readme",
-  "dependencies": {}
+  "dependencies": {
+    "sass": "^1.42.1",
+    "sass-loader": "10"
+  }
 }
