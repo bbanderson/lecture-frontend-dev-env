@@ -7,19 +7,20 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 module.exports = {
   mode: "development",
   entry: {
-    main: "./src/app.js"
+    main: "./src/app.js",
   },
   output: {
     filename: "[name].js",
-    path: path.resolve("./dist")
+    path: path.resolve("./dist"),
   },
   devServer: {
     overlay: true,
     stats: "errors-only",
     proxy: {
-      "/api": "http://localhost:8081"
+      "/api": "http://localhost:8081",
     },
     // TODO: 여기에 핫로딩을 설정하세요
+    hot: true,
   },
   module: {
     rules: [
@@ -30,46 +31,46 @@ module.exports = {
             ? MiniCssExtractPlugin.loader // 프로덕션 환경
             : "style-loader", // 개발 환경
           "css-loader",
-          "sass-loader"
-        ]
+          "sass-loader",
+        ],
       },
       {
         test: /\.(png|jpg|svg|gif)$/,
         loader: "url-loader",
         options: {
           name: "[name].[ext]?[hash]",
-          limit: 10000 // 10Kb
-        }
+          limit: 10000, // 10Kb
+        },
       },
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        loader: "babel-loader" // 바벨 로더를 추가한다
-      }
-    ]
+        loader: "babel-loader", // 바벨 로더를 추가한다
+      },
+    ],
   },
   plugins: [
     new webpack.BannerPlugin({
-      banner: `빌드 날짜: ${new Date().toLocaleString()}`
+      banner: `빌드 날짜: ${new Date().toLocaleString()}`,
     }),
     new webpack.DefinePlugin({}),
     new HtmlWebpackPlugin({
       template: "./src/index.html",
       templateParameters: {
-        env: process.env.NODE_ENV === "development" ? "(개발용)" : ""
+        env: process.env.NODE_ENV === "development" ? "(개발용)" : "",
       },
       minify:
         process.env.NODE_ENV === "production"
           ? {
               collapseWhitespace: true, // 빈칸 제거
-              removeComments: true // 주석 제거
+              removeComments: true, // 주석 제거
             }
           : false,
-      hash: process.env.NODE_ENV === "production"
+      hash: process.env.NODE_ENV === "production",
     }),
     new CleanWebpackPlugin(),
     ...(process.env.NODE_ENV === "production"
       ? [new MiniCssExtractPlugin({ filename: `[name].css` })]
-      : [])
-  ]
+      : []),
+  ],
 };
