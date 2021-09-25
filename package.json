@@ -5,7 +5,7 @@
   "main": ".eslintrc.js",
   "husky": {
     "hooks": {
-      "pre-commit": "echo \"커밋 직전\" && eslint app.js --fix"
+      "pre-commit": "echo \"커밋 직전\" && eslint foo.js --fix"
     }
   },
   "devDependencies": {
